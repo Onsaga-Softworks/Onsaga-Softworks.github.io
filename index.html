@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Onsaga Softworks</title>
+<style>
+  :root{
+    --bg:#0B0A10; --panel:#15131C; --edge:#292534; --txt:#EDEBF5; --dim:#9793AC; --acc:#9A8FFF;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+       font:16px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+  main{max-width:44rem;margin:0 auto;padding:74px 24px 90px}
+  h1{font-size:14px;letter-spacing:.24em;font-weight:600;color:var(--dim);
+     text-transform:uppercase;margin:0 0 8px}
+  .tag{color:var(--dim);margin:0 0 46px;font-size:15px}
+
+  /* One card per game. Adding another studio title is one <article> — its own folder, its own
+     pages, nothing shared but the domain. */
+  article{background:var(--panel);border:1px solid var(--edge);border-radius:14px;
+          padding:24px 26px;margin:0 0 16px}
+  article h2{font-size:25px;letter-spacing:-.02em;margin:0 0 8px}
+  article p{color:var(--dim);margin:0 0 18px;font-size:15px}
+  nav{display:flex;gap:9px;flex-wrap:wrap}
+  a.btn{display:inline-block;padding:9px 17px;border-radius:9px;text-decoration:none;
+        border:1px solid var(--edge);color:var(--txt);font-size:14px}
+  a.btn:hover{border-color:var(--acc);color:var(--acc)}
+  footer{margin-top:46px;padding-top:20px;border-top:1px solid var(--edge);
+         color:var(--dim);font-size:14px}
+  footer a{color:var(--acc)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Onsaga Softworks</h1>
+  <p class="tag">Small games, made carefully.</p>
+
+  <article>
+    <h2>Cullet</h2>
+    <p>A one-tap arcade game. Hold to charge, let go to fire, break through the glass rings.
+       No accounts, no servers — your game stays on your phone.</p>
+    <nav>
+      <a class="btn" href="cullet/support.html">Support</a>
+      <a class="btn" href="cullet/privacy.html">Privacy policy</a>
+    </nav>
+  </article>
+
+  <!-- Stone Merge Quest goes here once its pages are written. Uncomment, and add its
+       folder to the repository at the same time:
+  <article>
+    <h2>Stone Merge Quest</h2>
+    <p>One sentence about the game.</p>
+    <nav>
+      <a class="btn" href="stonemergequest/support.html">Support</a>
+      <a class="btn" href="stonemergequest/privacy.html">Privacy policy</a>
+    </nav>
+  </article>
+  -->
+
+  <footer>Onsaga Softworks · <a href="mailto:onsagasoftworks@gmail.com">onsagasoftworks@gmail.com</a></footer>
+</main>
+</body>
+</html>
