@@ -3,60 +3,92 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
 <title>Onsaga Softworks</title>
+<meta name="description" content="Onsaga Softworks — small games, made carefully. Cullet and Magic Crystal Shatter.">
 <style>
   :root{
     --bg:#0B0A10; --panel:#15131C; --edge:#292534; --txt:#EDEBF5; --dim:#9793AC; --acc:#9A8FFF;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--txt);
-       font:16px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-  main{max-width:44rem;margin:0 auto;padding:74px 24px 90px}
-  h1{font-size:14px;letter-spacing:.24em;font-weight:600;color:var(--dim);
-     text-transform:uppercase;margin:0 0 8px}
-  .tag{color:var(--dim);margin:0 0 46px;font-size:15px}
+  html{background:var(--bg)}
+  body{margin:0;min-height:100vh;color:var(--txt);
+       font:16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+       /* A faint violet haze at the top — depth without a picture. */
+       background:radial-gradient(ellipse 90% 55% at 50% -12%,rgba(127,119,221,.16),transparent 70%) var(--bg)}
+  main{max-width:58rem;margin:0 auto;padding:92px 24px 72px}
 
-  /* One card per game. Adding another studio title is one <article> — its own folder, its own
-     pages, nothing shared but the domain. */
-  article{background:var(--panel);border:1px solid var(--edge);border-radius:14px;
-          padding:24px 26px;margin:0 0 16px}
-  article h2{font-size:25px;letter-spacing:-.02em;margin:0 0 8px}
-  article p{color:var(--dim);margin:0 0 18px;font-size:15px}
-  nav{display:flex;gap:9px;flex-wrap:wrap}
-  a.btn{display:inline-block;padding:9px 17px;border-radius:9px;text-decoration:none;
-        border:1px solid var(--edge);color:var(--txt);font-size:14px}
+  header{text-align:center;margin:0 0 58px}
+  h1{font-size:13px;letter-spacing:.3em;font-weight:600;color:var(--dim);
+     text-transform:uppercase;margin:0 0 16px}
+  .tag{font-size:clamp(28px,5vw,42px);line-height:1.12;letter-spacing:-.025em;font-weight:600;margin:0}
+  .tag span{color:var(--dim);font-weight:400}
+
+  /* One card per game. Each card carries its own --glow, taken from the game's own palette,
+     and everything tinted on the card reads it: the halo behind the icon, the icon's shadow,
+     the border on hover. Adding a third game is one more <article> with its own colour. */
+  .games{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+  .game{position:relative;overflow:hidden;text-align:center;
+        display:flex;flex-direction:column;   /* buttons sit on one line across both cards */
+        background:var(--panel);border:1px solid var(--edge);border-radius:22px;
+        padding:38px 28px 30px;
+        transition:transform .25s ease,border-color .25s ease}
+  .game::before{content:"";position:absolute;left:-10%;right:-10%;top:-38%;height:75%;
+        background:radial-gradient(ellipse at 50% 30%,var(--glow) 0%,transparent 62%);
+        opacity:.28;pointer-events:none}
+  .game:hover{transform:translateY(-3px);border-color:var(--glow)}
+  .game > *{position:relative}
+  .icon{display:block;width:128px;height:128px;margin:0 auto 24px;border-radius:29px;
+        box-shadow:0 22px 48px -14px var(--glow),0 0 0 1px rgba(255,255,255,.07)}
+  .game h2{font-size:27px;letter-spacing:-.02em;margin:0 0 10px}
+  .game p{color:var(--dim);font-size:15px;margin:0 auto 24px;max-width:30rem}
+  nav{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:auto}
+  a.btn{display:inline-block;padding:9px 18px;border-radius:10px;text-decoration:none;
+        border:1px solid var(--edge);color:var(--txt);font-size:14px;
+        transition:border-color .2s,color .2s}
   a.btn:hover{border-color:var(--acc);color:var(--acc)}
-  footer{margin-top:46px;padding-top:20px;border-top:1px solid var(--edge);
-         color:var(--dim);font-size:14px}
-  footer a{color:var(--acc)}
+
+  .cullet{--glow:#7F77DD}
+  .mcs{--glow:#C64BE0}
+  /* This icon has its own rounded frame baked in (radius ≈ 17% of its width, corners
+     transparent). The CSS radius is matched to it so the frame is neither shaved nor haloed. */
+  .mcs .icon{border-radius:22px}
+
+  footer{margin-top:66px;padding-top:22px;border-top:1px solid var(--edge);
+         color:var(--dim);font-size:14px;text-align:center}
+  footer a{color:var(--acc);text-decoration:none}
+  footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
 <main>
-  <h1>Onsaga Softworks</h1>
-  <p class="tag">Small games, made carefully.</p>
+  <header>
+    <h1>Onsaga Softworks</h1>
+    <p class="tag">Small games, <span>made carefully.</span></p>
+  </header>
 
-  <article>
-    <h2>Cullet</h2>
-    <p>A one-tap arcade game. Hold to charge, let go to fire, break through the glass rings.
-       No accounts, no servers — your game stays on your phone.</p>
-    <nav>
-      <a class="btn" href="cullet/support.html">Support</a>
-      <a class="btn" href="cullet/privacy.html">Privacy policy</a>
-    </nav>
-  </article>
+  <section class="games">
+    <article class="game cullet">
+      <img class="icon" src="cullet/icon.png" alt="Cullet icon" width="128" height="128">
+      <h2>Cullet</h2>
+      <p>A one-tap arcade game. Hold to charge, let go to fire, break through the glass rings.</p>
+      <nav>
+        <a class="btn" href="cullet/support.html">Support</a>
+        <a class="btn" href="cullet/privacy.html">Privacy policy</a>
+      </nav>
+    </article>
 
-  <!-- Stone Merge Quest goes here once its pages are written. Uncomment, and add its
-       folder to the repository at the same time:
-  <article>
-    <h2>Stone Merge Quest</h2>
-    <p>One sentence about the game.</p>
-    <nav>
-      <a class="btn" href="stonemergequest/support.html">Support</a>
-      <a class="btn" href="stonemergequest/privacy.html">Privacy policy</a>
-    </nav>
-  </article>
-  -->
+    <article class="game mcs">
+      <img class="icon" src="magiccrystalshatter/icon.png" alt="Magic Crystal Shatter icon" width="128" height="128">
+      <h2>Magic Crystal Shatter</h2>
+      <p>Tap three or more touching crystals of the same colour to shatter them, and clear each
+         level before your moves run out.</p>
+      <nav>
+        <a class="btn" href="magiccrystalshatter/support.html">Support</a>
+        <a class="btn" href="magiccrystalshatter/privacy.html">Privacy policy</a>
+      </nav>
+    </article>
+  </section>
 
   <footer>Onsaga Softworks · <a href="mailto:onsagasoftworks@gmail.com">onsagasoftworks@gmail.com</a></footer>
 </main>
