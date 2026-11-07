@@ -42,9 +42,10 @@
 <div class="box">
   <p><strong>The short version.</strong> Magic Crystal Shatter has no accounts, no servers of its
   own and no analytics. Your progress is saved on your own device, and apart from your phone's own
-  backup, if you have one switched on, only two things ever leave it: the data Google AdMob
-  collects to show adverts, and what Apple or Google handles when you buy something. We never see
-  your name, your email or your payment details.</p>
+  backup, if you have one switched on, only three things ever leave it: the data Google AdMob
+  collects to show adverts, what Apple or Google handles when you buy something, and short-lived
+  technical diagnostics from Unity's in-app purchase library. We never see your name, your email or
+  your payment details.</p>
 </div>
 
 <h2>What stays on your device</h2>
@@ -55,7 +56,8 @@ in the system's app preferences. It is not uploaded to us, backed up to us, or s
   <tr><td><code>MND_SAVE_V1</code></td>
       <td>Your progress and inventory — the highest level reached, total score, coins, gems, the
       power-ups you hold (bombs, shuffles, extra moves), whether you have already bought the one-time
-      Starter Bundle, and your language choice</td></tr>
+      Starter Bundle, your language choice, and the store's transaction numbers of your recent
+      purchases, so that no purchase is added twice</td></tr>
   <tr><td><code>mnd_level_state_v1</code></td>
       <td>The board of a level you left unfinished, so you can pick it up where you stopped</td></tr>
   <tr><td><code>mnd_stars_&lt;level&gt;</code></td>
@@ -117,13 +119,16 @@ general audiences.</p>
 <h2>Purchases</h2>
 <p>In-app purchases are processed entirely by the App Store or Google Play. Your payment details go
 to them and never pass through the game. The game receives only a confirmation that a purchase
-completed, and adds what you bought to the save on your device. We do not know who bought what.</p>
+completed, and adds what you bought to the save on your device. We do not know who bought what.
+The game talks to the store through Unity's In-App Purchasing library, which sends Unity
+short-lived technical diagnostics about how the store connection is working — no personal
+identifiers, purchase history or payment details.</p>
 
 <h2>Permissions</h2>
 <p>On Android the game itself declares two permissions. <code>VIBRATE</code> is for the short
 vibration when a level ends, which you can switch off in Settings. <code>INTERNET</code> is used by
-the advertising SDK and by the store's purchase service; the game makes no network requests of its
-own. Google's advertising and billing libraries add the permissions they need to work, such as
+the advertising SDK, the store's purchase service and Unity's purchase library; the game makes no
+network requests of its own. Google's advertising and billing libraries add the permissions they need to work, such as
 reading the advertising identifier. The game does not ask for your camera, microphone, location,
 contacts, photos or files.</p>
 
